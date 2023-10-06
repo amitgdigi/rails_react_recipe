@@ -9,6 +9,7 @@ class Api::V1::RecipesController < ApplicationController
   def create
     recipe = Recipe.create!(recipe_params)
     if recipe
+      SlackTestJob.perform_now("created", recipe)
       render json: recipe
     else
       render json: recipe.errors
@@ -20,6 +21,7 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def destroy
+    SlackTestJob.perform_now("deleted", @recipe)
     @recipe&.destroy
     render json: { message: 'Recipe deleted!' }
   end
