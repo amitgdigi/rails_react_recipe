@@ -39,6 +39,16 @@ const Home = () => {
           >
             View Recipes
           </Link>
+
+          <Link
+            to="/face-auth"
+            className="btn btn-lg custom-button"
+            role="button"
+          >
+            Test Face authorization
+          </Link>
+
+
           <button
             onClick={handleLogOut}>
             LOGOUT
